@@ -2,6 +2,7 @@
 
 Body {
   font-family: Quicksand;
+  background: whitesmoke;
 }
 .App {
   text-align: center;
@@ -26,6 +27,17 @@ Body {
 
 .App-link {
   color: #61dafb;
+}
+
+.nav-link {
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  -webkit-transform: scale(1.04);
+  -ms-transform: scale(1.04);
+  transform: scale(1.04);
+  background-color: rgb(203, 188, 255);
 }
 
 @keyframes App-logo-spin {

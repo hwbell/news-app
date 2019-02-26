@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
 
 // components 
-import Button from '@material-ui/core/Button';
+import {Button} from 'reactstrap';
 
 // define heading categories
 // business entertainment general health science politics sports technology
@@ -31,7 +31,11 @@ export default class Example extends React.Component {
           {
             headings.map((heading, i) => {
               return (
-                <Button key={i} className="col-4 col-md-2 containedPrimary" style={styles.link}>{heading}</Button>
+                <Button key={i} 
+                  color="link"
+                  className="nav-link col-4 col-md-2" 
+                  style={styles.link}
+                  onClick={()=>this.props.onClick(heading)}>{heading}</Button>
               )
             })
           }
@@ -43,7 +47,8 @@ export default class Example extends React.Component {
 
 const styles = {
   container: {
-    margin: '5vh',
+    // margin: '3vh',
+    // marginTop: '2vh'
   },
   link: {
     padding: '1vh',

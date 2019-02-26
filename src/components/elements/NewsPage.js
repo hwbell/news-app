@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
 
+// animation
+import posed from 'react-pose';
+
 // components
 import { Card, CardBody, CardTitle, CardText, CardImg, CardLink } from 'reactstrap';
+
+const Div = posed.div({
+  enter: { x: 0, opacity: 1 },
+  exit: { x: -100, opacity: 0 }
+});
 
 
 class NewsSource extends Component {
@@ -19,9 +27,14 @@ class NewsSource extends Component {
   render() {
 
     const article = this.props.article;
+    const time = new Date(article.publishedAt);
+    const month = time.getMonth()+1 < 10 ? `0${time.getMonth()+1}` : time.getMonth()+1;
+    const date = time.getDate()+1 < 10 ? `0${time.getDate()+1}` : time.getDate()+1;
+
+    const dateDisplay = `posted ${month}-${date}`
 
     return (
-      <div className="col-12 col-md-6" style={styles.cardHolder}>
+      <Div className="col-12 col-md-6" style={styles.cardHolder}>
         <Card>
           <CardImg top width="100%" src={article.urlToImage} alt="Card image cap" />
           
@@ -30,7 +43,8 @@ class NewsSource extends Component {
             <CardTitle style={styles.title}>{article.title}</CardTitle>
             <CardText style={styles.description}>{article.description}</CardText>
             <CardText style={styles.description}>by {article.author}</CardText>
-            
+            <CardText style={styles.description}>{dateDisplay}</CardText>
+
             <CardText style={styles.description}>read the full article at
             <CardLink target="_blank" 
               href={article.url}
@@ -45,7 +59,7 @@ class NewsSource extends Component {
             
           </CardBody>
         </Card>
-      </div>
+      </Div>
     );
   }
 }

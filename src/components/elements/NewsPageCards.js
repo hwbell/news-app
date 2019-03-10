@@ -5,6 +5,7 @@ import '../../App.css';
 
 // components
 import NewsPage from './NewsPage';
+import MoreArticles from './MoreArticles';
 
 // animation
 import posed, { PoseGroup } from 'react-pose';
@@ -26,12 +27,19 @@ class NewsPageCards extends Component {
     }
   }
   render() {
+    console.log(this.props.articles)
     return (
       <PoseGroup>
         <Container key={'container'} className="container row" style={styles.container}>
             {this.props.articles.map((article, i) => {
               return <NewsPage key={i} article={article} />
             })}
+            
+            {this.props.showButton && 
+            <MoreArticles 
+              handleClick={this.props.handleMoreArticles}
+            />}
+
         </Container>
       </PoseGroup>
     );

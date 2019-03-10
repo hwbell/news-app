@@ -20,10 +20,14 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.getNews = this.getNews.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleMoreArticles = this.handleMoreArticles.bind(this);
+
     this.state = {
       articles: [],
+      fullArticles: [],
       searchKey: 'news',
-      sortBy: 'publishedAt'
+      sortBy: 'relevancy',
+      displayLength: 10
     }
   }
 
@@ -50,18 +54,13 @@ class App extends Component {
       console.log(q);
 
       console.log(`total articles: ${response.totalResults}`);
+      console.log(response.articles)
 
-      
+      // slicing at 1 because a non-related article seems to come up first quite often?
       this.setState({
-        articles: response.articles.slice(0, 10)
+        articles: response.articles.slice(1, this.state.displayLength+1),
+        fullArticles: response.articles
       })
-
-      /*
-        {
-          status: "ok",
-          articles: [...]
-        }
-      */
     });
   }
 
@@ -87,19 +86,44 @@ class App extends Component {
     })
   }
 
+  handleMoreArticles () {
+    console.log('getting more articles to read ...')
+    let fullArticles = JSON.parse(JSON.stringify(this.state.fullArticles));
+    let newDisplayLength = this.state.displayLength + 10;
+
+    // if there are 10 more to display, do it!
+    if (!!fullArticles[newDisplayLength]) {
+      this.setState({
+        articles: fullArticles.slice(1, newDisplayLength+1)
+      })
+    } else { 
+      // otherwise just diplay them all. This will only be available for the user
+      // if fullArticles.length > 10 to begin with
+      this.setState({
+        articles: fullArticles
+      })
+    }
+  }
+
   render() {
+    // if there are more to show or not ... 
+    let showButton = this.state.articles.length < this.state.fullArticles.length;
+    console.log(this.state.articles.length, this.state.fullArticles.length, showButton)
     return (
       <div className="App">
         <div className="">
 
           <SearchBar handleSearch={this.handleSearch} />
+          
           <Navigator onClick={this.handleClick} />
          
-          {/* {this.state.articles &&
+          {this.state.articles &&
             <NewsPageCards
               articles={this.state.articles}
+              showButton={showButton}
+              handleMoreArticles={this.handleMoreArticles}
             />
-          } */}
+          }
 
 
         </div>

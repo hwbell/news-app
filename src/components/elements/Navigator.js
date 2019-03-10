@@ -11,7 +11,7 @@ const headings = [
   'technology',
   'business',
   'entertainment',
-  'health',
+  'sports',
   'science',
   'politics',
   
@@ -47,14 +47,13 @@ export default class Example extends React.Component {
 
 const styles = {
   container: {
-    // margin: '3vh',
-    // marginTop: '2vh'
+    marginBottom: '2vh',
   },
   link: {
     padding: '1vh',
     fontFamily: 'inherit',
     fontWeight: '650',
-    fontSize: 'calc(0.5vw + 12px)',
-    color: '#4527A0'
+    fontSize: 'calc(0.5vw + 14px)',
+    // color: '#4527A0'
   }
 }

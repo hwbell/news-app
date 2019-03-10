@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../../App.css';
 
 // components
+import { Button } from 'reactstrap';
+
 // thank you very much to https://www.npmjs.com/package/react-search-field
 import SearchField from "react-search-field";
 
@@ -53,6 +55,7 @@ class SearchBar extends Component {
             onSearchClick={this.onEnter}
             classNames="test-class"
           />
+          
         </div>
 
         <div className="col-12 col-sm-4">
@@ -70,7 +73,8 @@ class SearchBar extends Component {
 
 const styles = {
   container: {
-    margin: '2vh 0px'
+    marginTop: '4vh',
+    marginBottom: '2vh'
   },
   logoHolder: {
     display: 'flex',
@@ -83,6 +87,15 @@ const styles = {
     fontWeight: 'bold',
     fontSize: 24
   },
+  buttonHolder: {
+    // width: '200px',
+    padding: '5px 0px',
+    margin: 0
+  },
+  button: {
+    padding: '5px 0px',
+    fontSize: 13,
+  },
   icon: {
     fontSize: 25,
     padding: '1vh',
@@ -91,13 +104,13 @@ const styles = {
   poweredBy: {
     paddingLeft: 20,
     margin: '1vh',
-    fontWeight: 'bold',
-    fontSize: 16
+    fontWeight: 'lighter',
+    fontSize: 13
   },
   link: {
     color: '#4527A0',
     fontWeight: 650
-  }
+  },
 }
 
 export default SearchBar;

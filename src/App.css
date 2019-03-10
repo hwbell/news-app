@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
-  font-family: Raleway;
+  font-family: Roboto;
   /* font-weight: 400; */
   background: whitesmoke;
 }
@@ -35,11 +35,11 @@ body {
   border-radius: 10px;
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link:active, .nav-link:focus {
   /* -webkit-transform: scale(1.04);
   -ms-transform: scale(1.04);
   transform: scale(1.04); */
-  background-color: rgba(188, 200, 255, 0.5);
+  color: rgb(37, 7, 107);
 }
 
 @keyframes App-logo-spin {

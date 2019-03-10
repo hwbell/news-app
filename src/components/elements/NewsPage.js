@@ -36,13 +36,15 @@ class NewsSource extends Component {
     return (
       <Div className="col-12 col-md-6" style={styles.cardHolder}>
         <Card>
-          <CardImg top width="100%" src={article.urlToImage} alt="Card image cap" />
+          <CardImg src={article.urlToImage} alt="Card image cap" 
+            style={styles.cardImg}
+          />
           
           <CardBody>
             
             <CardTitle style={styles.title}>{article.title}</CardTitle>
             <CardText style={styles.description}>{article.description}</CardText>
-            <CardText style={styles.description}>by {article.author}</CardText>
+            <CardText style={styles.author}>{article.author}</CardText>
             <CardText style={styles.description}>{dateDisplay}</CardText>
 
             <CardText style={styles.description}>read the full article at
@@ -53,10 +55,6 @@ class NewsSource extends Component {
             </CardLink>
             </CardText>
 
-            <CardText>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </CardText>
-            
           </CardBody>
         </Card>
       </Div>
@@ -73,8 +71,14 @@ const styles = {
     // color: '#3399CC',
     textAlign: 'left'
   },
+  cardImg: {
+  },
   description: {
     textAlign: 'left'
+  },
+  author: {
+    textAlign: 'left',
+    fontWeight: 'bolder'
   },
   link: {
     textAlign: 'left',

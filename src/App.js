@@ -10,7 +10,7 @@ import { Spinner } from 'reactstrap';
 
 // get the newsapi 
 const NewsAPI = require('newsapi');
-const YOUR_API_KEY = 'c78288d021a544c69abec55a4ce257cd';
+const YOUR_API_KEY = process.env.REACT_APP_NEWSAPI_KEY;
 const newsapi = new NewsAPI(YOUR_API_KEY);
 
 class App extends Component {
@@ -23,6 +23,7 @@ class App extends Component {
     this.state = {
       articles: [],
       searchKey: 'news',
+      sortBy: 'publishedAt'
     }
   }
 
@@ -35,7 +36,7 @@ class App extends Component {
     // start with defaults
     const seachParams = {
       language: 'en',
-      sortBy: 'relevancy'
+      sortBy: this.state.sortBy
     };
 
     // get rid of the ones that don't exist by only adding the ones that do
@@ -94,11 +95,11 @@ class App extends Component {
           <SearchBar handleSearch={this.handleSearch} />
           <Navigator onClick={this.handleClick} />
          
-          {this.state.articles &&
+          {/* {this.state.articles &&
             <NewsPageCards
               articles={this.state.articles}
             />
-          }
+          } */}
 
 
         </div>

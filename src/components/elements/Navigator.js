@@ -54,7 +54,7 @@ const styles = {
     padding: '1vh',
     fontFamily: 'inherit',
     fontWeight: '650',
-    fontSize: 'calc(0.4vw + 12px)',
+    fontSize: 'calc(0.5vw + 12px)',
     color: '#4527A0'
   }
 }

@@ -85,7 +85,8 @@ const styles = {
   },
   icon: {
     fontSize: 25,
-    padding: '1vh'
+    padding: '1vh',
+    marginLeft: '1vh'
   },
   poweredBy: {
     paddingLeft: 20,

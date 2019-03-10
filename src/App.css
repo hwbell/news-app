@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
-Body {
-  font-family: Quicksand;
+body {
+  font-family: Raleway;
+  /* font-weight: 400; */
   background: whitesmoke;
 }
 .App {
@@ -31,13 +32,14 @@ Body {
 
 .nav-link {
   transition: all 0.2s ease;
+  border-radius: 10px;
 }
 
 .nav-link:hover {
-  -webkit-transform: scale(1.04);
+  /* -webkit-transform: scale(1.04);
   -ms-transform: scale(1.04);
-  transform: scale(1.04);
-  background-color: rgb(203, 188, 255);
+  transform: scale(1.04); */
+  background-color: rgba(188, 200, 255, 0.5);
 }
 
 @keyframes App-logo-spin {

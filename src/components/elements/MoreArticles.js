@@ -23,18 +23,12 @@ export default class MoreArticles extends React.Component {
   render() {
     return (
       <Div className="col-12 col-md-6" style={styles.cardHolder}>
-        <Card style={{ height: '100%' }}>
-
-        <CardBody style={styles.textHolder}>
 
           <Button color='primary'
             onClick={this.props.handleClick}>
              + more articles
           </Button>
         
-        </CardBody>
-
-        </Card>
       </Div>
     );
   }

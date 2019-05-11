@@ -6,7 +6,17 @@ import './App.css';
 import Navigator from './components/elements/Navigator';
 import NewsPageCards from './components/elements/NewsPageCards';
 import SearchBar from './components/elements/SearchBar';
+import MoreArticles from './components/elements/MoreArticles';
 import { Spinner } from 'reactstrap';
+
+// animation
+import posed, { PoseGroup } from 'react-pose';
+
+// for the outer container of all the cards. this way the children stagger
+const Container = posed.div({
+  enter: { opacity: 1, staggerChildren: 50 },
+  exit: { opacity: 0, staggerChildren: 50, staggerDirection: -1 }
+});
 
 // get the newsapi 
 const NewsAPI = require('newsapi');
@@ -27,7 +37,8 @@ class App extends Component {
       fullArticles: [],
       searchKey: 'news',
       sortBy: 'relevancy',
-      displayLength: 10
+      displayLength: 10,
+      showArticles: false
     }
   }
 
@@ -36,6 +47,9 @@ class App extends Component {
   }
 
   getNews(q) {
+
+    // switch this back and forth upon getting new articles, for the pose animation
+    this.setState({ showArticles: false });
 
     // start with defaults
     const seachParams = {
@@ -58,8 +72,9 @@ class App extends Component {
 
       // slicing at 1 because a non-related article seems to come up first quite often?
       this.setState({
-        articles: response.articles.slice(1, this.state.displayLength+1),
-        fullArticles: response.articles
+        articles: response.articles.slice(1, this.state.displayLength + 1),
+        fullArticles: response.articles,
+        showArticles: true
       })
     });
   }
@@ -86,7 +101,7 @@ class App extends Component {
     })
   }
 
-  handleMoreArticles () {
+  handleMoreArticles() {
     console.log('getting more articles to read ...')
     let fullArticles = JSON.parse(JSON.stringify(this.state.fullArticles));
     let newDisplayLength = this.state.displayLength + 10;
@@ -94,9 +109,9 @@ class App extends Component {
     // if there are 10 more to display, do it!
     if (!!fullArticles[newDisplayLength]) {
       this.setState({
-        articles: fullArticles.slice(1, newDisplayLength+1)
+        articles: fullArticles.slice(1, newDisplayLength + 1)
       })
-    } else { 
+    } else {
       // otherwise just diplay them all. This will only be available for the user
       // if fullArticles.length > 10 to begin with
       this.setState({
@@ -114,17 +129,24 @@ class App extends Component {
         <div className="">
 
           <SearchBar handleSearch={this.handleSearch} />
-          
-          <Navigator onClick={this.handleClick} />
-         
-          {this.state.articles &&
-            <NewsPageCards
-              articles={this.state.articles}
-              showButton={showButton}
-              handleMoreArticles={this.handleMoreArticles}
-            />
-          }
 
+          <Navigator onClick={this.handleClick} />
+
+          <PoseGroup>
+            {this.state.showArticles &&
+
+              <Container key="container">
+                <NewsPageCards
+                  articles={this.state.articles}
+                  handleMoreArticles={this.handleMoreArticles}
+                />
+                {showButton &&
+                  <MoreArticles
+                    handleClick={this.handleMoreArticles}
+                  />}
+              </Container> 
+            }
+          </PoseGroup>
 
         </div>
       </div>

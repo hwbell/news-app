@@ -10,7 +10,7 @@ import { Card, CardBody, CardTitle, CardText, CardImg, CardLink } from 'reactstr
 
 const Div = posed.div({
   enter: { x: 0, opacity: 1 },
-  exit: { x: -100, opacity: 0 }
+  exit: { x: -30, opacity: 0 }
 });
 
 
@@ -49,7 +49,7 @@ export default class NewsPage extends Component {
     }
 
     return (
-      <Div className="col-12 col-md-6" style={styles.cardHolder}>
+      <Div className="col-12 col-md-6 col-lg-4" style={styles.cardHolder}>
         <Card style={{ height: '100%' }}>
 
           <div style={styles.imageHolder}>

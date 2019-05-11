@@ -12,8 +12,8 @@ import posed, { PoseGroup } from 'react-pose';
 
 // for the outer container of all the cards. this way the children stagger
 const Container = posed.div({
-  enter: { staggerChildren: 50 },
-  exit: { staggerChildren: 50, staggerDirection: -1 }
+  enter: { opacity: 1, staggerChildren: 50 },
+  exit: { opacity: 0, staggerChildren: 50, staggerDirection: -1 }
 });
 
 class NewsPageCards extends Component {
@@ -29,19 +29,16 @@ class NewsPageCards extends Component {
   render() {
     console.log(this.props.articles)
     return (
-      <PoseGroup>
-        <Container key={'container'} className="container row" style={styles.container}>
-            {this.props.articles.map((article, i) => {
+      <Container key={'container'} className="container row" style={styles.container}>
+
+        {/* <PoseGroup> */}
+          {this.props.articles &&
+            this.props.articles.map((article, i) => {
               return <NewsPage key={i} article={article} />
             })}
-            
-            {this.props.showButton && 
-            <MoreArticles 
-              handleClick={this.props.handleMoreArticles}
-            />}
+        {/* </PoseGroup> */}
 
-        </Container>
-      </PoseGroup>
+      </Container>
     );
   }
 }
@@ -49,6 +46,7 @@ class NewsPageCards extends Component {
 const styles = {
   container: {
     width: '100%',
+    minHeight: '100vh',
     margin: 'auto auto',
   }
 }
